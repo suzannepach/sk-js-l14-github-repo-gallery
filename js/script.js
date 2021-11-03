@@ -6,6 +6,10 @@ const repoList = document.querySelector(".repo-list");
 const repos = document.querySelector(".repos");
 // This variable selects the section where the individual repo data will appear.
 const repoData = document.querySelector(".repo-data");
+// This variable selects the back to repo gallery button.
+const backButton = document.querySelector(".view-repos");
+// This variable selects the search input box.
+const filterInput = document.querySelector(".filter-repos");
 
 const username = "suzannepach";
 
@@ -50,6 +54,7 @@ getRepos();
 
 // A function to display information about each repo
 const displayRepo = function (repos) {
+    filterInput.classList.remove("hide");
     for (const repo of repos) {
         const repoItem = document.createElement("li");
         repoItem.classList.add("repo");
@@ -97,4 +102,26 @@ const displayRepoInfo = function (repoInfo, languages) {
     repoData.append(repoInfoElement);
     repoData.classList.remove("hide");
     repos.classList.add("hide");
+    backButton.classList.remove("hide");
 };
+
+// click event to the back button
+backButton.addEventListener("click", function () {
+    repos.classList.remove("hide");
+    repoData.classList.add("hide");
+    backButton.classList.add("hide");
+});
+
+// add dynamic search
+filterInput.addEventListener("input", function(e) {
+    const searchText = e.target.value;
+    const repos = document.querySelectorAll(".repo"); 
+    const searchLowerText = searchText.toLowerCase();
+    for (const repo of repos) {
+        const repoLowerText = repo.innerHTML.toLowerCase();
+        if (repoLowerText.includes(searchLowerText)) {
+            repo.classList.remove("hide");
+        } else {repo.classList.add("hide");
+        }
+    };
+})
