@@ -3,7 +3,7 @@ const overview = document.querySelector(".overview");
  // This variable selects the unordered list to display the repos list.
 const repoList = document.querySelector(".repo-list");
 // This variable selects the section where all my repo information appears.
-const repos = document.querySelector(".repos");
+const allReposContainer = document.querySelector(".repos");
 // This variable selects the section where the individual repo data will appear.
 const repoData = document.querySelector(".repo-data");
 // This variable selects the back to repo gallery button.
@@ -101,13 +101,13 @@ const displayRepoInfo = function (repoInfo, languages) {
         `;
     repoData.append(repoInfoElement);
     repoData.classList.remove("hide");
-    repos.classList.add("hide");
+    allReposContainer.classList.add("hide");
     backButton.classList.remove("hide");
 };
 
 // click event to the back button
 backButton.addEventListener("click", function () {
-    repos.classList.remove("hide");
+    allReposContainer.classList.remove("hide");
     repoData.classList.add("hide");
     backButton.classList.add("hide");
 });
